@@ -3,7 +3,6 @@ import ComposableArchitecture
 import Foundation
 
 let observationSuite = BenchmarkSuite(name: "Observation") {
-  #if swift(>=5.9)
     if #available(iOS 17, macOS 14, tvOS 17, watchOS 10, *) {
       var stateWithObservation: StateWithObservation!
       $0.benchmark("ObservableState: Mutate count") {
@@ -125,10 +124,8 @@ let observationSuite = BenchmarkSuite(name: "Observation") {
         objectWithoutObservation = nil
       }
     }
-  #endif
 }
 
-#if swift(>=5.9)
   @ObservableState
   private struct StateWithObservation {
     var count = 0
@@ -173,4 +170,3 @@ let observationSuite = BenchmarkSuite(name: "Observation") {
       ]
     }
   }
-#endif

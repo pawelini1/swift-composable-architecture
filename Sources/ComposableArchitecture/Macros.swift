@@ -1,4 +1,4 @@
-#if swift(>=5.9)
+
   import Observation
 
   /// Helps implement the conformance to the ``Reducer`` protocol for a type.
@@ -237,4 +237,3 @@
     #externalMacro(
       module: "ComposableArchitectureMacros", type: "ViewActionMacro"
     ) where R.Action: ViewAction
-#endif

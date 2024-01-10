@@ -5,7 +5,6 @@ import Dependencies
 import Foundation
 
 let dependenciesSuite = BenchmarkSuite(name: "Dependencies") { suite in
-  #if swift(>=5.9)
     let reducer: some Reducer<Int, Void> = BenchmarkReducer()
       .dependency(\.calendar, .autoupdatingCurrent)
       .dependency(\.date, .init { Date() })
@@ -20,10 +19,8 @@ let dependenciesSuite = BenchmarkSuite(name: "Dependencies") { suite in
       _ = reducer.reduce(into: &state, action: ())
       precondition(state == 1)
     }
-  #endif
 }
 
-#if swift(>=5.9)
   @Reducer
   private struct BenchmarkReducer {
     @Dependency(\.someValue) var someValue
@@ -42,4 +39,3 @@ let dependenciesSuite = BenchmarkSuite(name: "Dependencies") { suite in
       self[SomeValueKey.self]
     }
   }
-#endif

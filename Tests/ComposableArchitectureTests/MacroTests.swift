@@ -1,4 +1,3 @@
-#if swift(>=5.9)
   import ComposableArchitecture
   import SwiftUI
 
@@ -33,4 +32,3 @@
       var body: some ReducerOf<Self> { EmptyReducer() }
     }
   }
-#endif

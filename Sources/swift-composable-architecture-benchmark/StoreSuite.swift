@@ -4,7 +4,6 @@ import Combine
 import Foundation
 
 let storeSuite = BenchmarkSuite(name: "Store") { suite in
-  #if swift(>=5.9)
     var store: StoreOf<Feature>!
     let levels = 5
 
@@ -32,10 +31,8 @@ let storeSuite = BenchmarkSuite(name: "Store") { suite in
         _cancellationCancellables.removeAll()
       }
     }
-  #endif
 }
 
-#if swift(>=5.9)
   @Reducer
   private struct Feature {
     struct State {
@@ -87,4 +84,3 @@ let storeSuite = BenchmarkSuite(name: "Store") { suite in
       ? state?.count
       : count(of: state?.child, level: level - 1)
   }
-#endif

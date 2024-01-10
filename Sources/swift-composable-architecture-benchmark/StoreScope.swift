@@ -1,7 +1,6 @@
 import Benchmark
 import ComposableArchitecture
 
-#if swift(>=5.9)
   @Reducer
   private struct Counter {
     typealias State = Int
@@ -18,10 +17,8 @@ import ComposableArchitecture
       }
     }
   }
-#endif
 
 let storeScopeSuite = BenchmarkSuite(name: "Store scoping") { suite in
-  #if swift(>=5.9)
     var store = Store(initialState: 0) { Counter() }
     var viewStores: [ViewStore<Int, Bool>] = [ViewStore(store, observe: { $0 })]
     for _ in 1...4 {
@@ -33,5 +30,4 @@ let storeScopeSuite = BenchmarkSuite(name: "Store scoping") { suite in
     suite.benchmark("Nested store") {
       lastViewStore.send(true)
     }
-  #endif
 }
